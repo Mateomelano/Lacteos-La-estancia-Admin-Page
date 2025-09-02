@@ -1,0 +1,110 @@
+
+
+.content-banner {
+    padding: 2rem;
+    background-color: #f0f4f8;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: auto;
+  
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #d84343;
+      margin-bottom: 1.5rem;
+    }
+    #h2cel{
+      margin-top: 4rem;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #d84343;
+      margin-bottom: 2rem;
+    }
+  
+    #uploadBanner, #uploadBannerCel {
+      display: block;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem;
+      border: 2px solid #d84343;
+      border-radius: 8px;
+      background-color: white;
+      cursor: pointer;
+      transition: border-color 0.3s;
+  
+      &:hover {
+        border-color: #a83232;
+      }
+    }
+  
+    #bannerContainer, #bannerCelContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      
+  
+      .banner-item {
+        position: relative;
+        border: 2px solid #d84343;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s;
+        background-color: white;
+  
+        &:hover {
+          transform: scale(1.03);
+          cursor: pointer;
+
+        }
+  
+        img {
+          display: block;
+          width: 100%;
+          height: auto;
+          border-bottom: 2px solid #d84343;
+        }
+  
+        button {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background-color: #d84343;
+          color: white;
+          border: none;
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+  
+          &:hover {
+            background-color: #a83232;
+            cursor: pointer;
+
+          }
+        }
+      }
+    }
+  }
+    /* Botón personalizado */
+    #uploadLabel, #uploadLabelCel {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background-color: #e63946;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 1.5rem;
+      }
+      
+      #uploadLabel:hover,
+      #uploadLabelCel:hover {
+        background-color: #d62828;
+        cursor: pointer;
+      }
+      
+      /* Ocultamos el input de archivo original */
+      #uploadBanner, #uploadBannerCel {
+        display: none !important;
+      }

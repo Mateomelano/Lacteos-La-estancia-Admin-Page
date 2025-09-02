@@ -1,0 +1,227 @@
+@use '../base/variables' as v;
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; // Permite que los elementos se ajusten automáticamente
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1400px; // Limita el ancho en pantallas grandes
+    margin-left: 350px; // Desplaza el contenido hacia la derecha según el ancho del sidebar
+}
+
+
+#productos {	
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 5rem 1rem; // Reduce márgenes en pantallas pequeñas
+    
+    h1 {    
+        font-size: 2.8rem; // Reduce tamaño en pantallas pequeñas
+        font-weight: 500;
+    }    
+    p {
+        color: v.$gris-oscuro;
+        font-size: 1.6rem;
+        font-weight: 400;
+    }
+}
+
+h1, h2 {
+    color: v.$primary-color;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+// 📌 Tabla responsiva
+.table-container {
+    width: 100%;
+    overflow-x: auto; // Agrega scroll horizontal en pantallas pequeñas
+}
+
+table {
+    width: 100%; // Se ajusta al contenedor en vez de 150vh
+    border-collapse: collapse;
+    background: white;
+    min-width: 700px; // Evita que las columnas se colapsen demasiado
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+
+}
+
+tbody{
+    text-align: center;
+}
+thead {
+    background: v.$primary-color;
+    color: white;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+tbody tr:hover {
+    background: #f1f1f1;
+}
+
+// Botones mejorados
+.btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    margin: 30px;
+
+    &:hover {
+    cursor: pointer;
+    background-color: #ce1e30;
+    transform: scale(1.05);
+    }
+}
+
+.btn-excel {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    margin: 30px;
+
+    &:hover {
+    cursor: pointer;
+    background-color: #ce1e30;
+    transform: scale(1.05);
+    }
+}
+
+
+ // Botones de edicion y eliminacion
+button{
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    background: none;
+    margin: 0 5px;
+}
+
+button:hover {
+    transform: scale(1.10);
+}
+
+.edit-btn, .delete-btn {
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    background: none;
+    margin: 0 5px;
+}
+
+.edit-btn {
+    color: #007bff;
+}
+
+.delete-btn {
+    color: #dc3545;
+}
+
+// Iconos de orden
+.orden-icon {
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    font-size: 20px;
+}
+
+
+#filter-habilitado {
+    font-size: 50px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1700px) {
+    .content {
+        margin-left: 250px; // Desplaza el contenido hacia la derecha en pantallas pequeñas
+    }
+    
+}
+
+.buscador-productos {
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 900px;
+
+  .titulo-buscador {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: v.$primary-color;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid v.$primary-color;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    font-size: 1.4rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 2.5rem;
+  }
+
+  .botones-acciones {
+    display: flex;
+    justify-content: center;
+    align-items: center; // ✅ Alinea todos verticalmente
+    gap: 30px;
+    flex-wrap: wrap;
+
+    .btn,
+    .btn-excel,
+    #modo-mantenimiento-btn {
+      white-space: nowrap;
+      padding: 10px 18px;
+    }
+
+    label {
+      all: unset; // ✅ Elimina estilos predeterminados del label
+      cursor: pointer;
+    }
+  }
+}
+
+.edit-precio-btn {
+    font-size: 1.5rem!important;
+    background-color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+}
+.checkProducto {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}

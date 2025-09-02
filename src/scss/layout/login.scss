@@ -1,0 +1,146 @@
+/* Estilos generales */
+.login-body {
+    font-family: 'Lexend', sans-serif;
+    background: url('https://res.cloudinary.com/dzfzqzdcu/image/upload/v1743530419/gkj9hj2vrgdnrlo1z3az.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor del Login */
+.login-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 750px;
+}
+
+/* Logo */
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Título */
+.login-container h2 {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Subtítulo */
+.login-container p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Línea decorativa */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.divider span {
+    padding: 0 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Campos de entrada */
+.input-login {
+    width: 90% !important;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+/* Efecto hover y focus en los inputs */
+.input-login:focus {
+    border-color: #d32f2f;
+    box-shadow: 0 0 5px rgba(211, 47, 47, 0.3);
+}
+
+/* Botón de login */
+.button-login {
+    background: #d32f2f;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 90%;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Efecto hover */
+.button-login:hover {
+    background: #b71c1c;
+}
+
+/* Mensaje de error */
+#error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Cambiar la fuente de los placeholders */
+.input-login::placeholder {
+    font-family: 'Lexend', sans-serif;
+    color: #999;  /* Color gris suave */
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 1; /* Asegura que el color sea visible en algunos navegadores */
+}
+
+
+#logout-button {
+    background-color: #000000; /* Color dorado */
+    color: white; /* Texto en blanco */
+    font-weight: bold;
+    border: 2px solid black; /* Borde negro */
+    padding: 5px 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    cursor: pointer;
+    display: block;
+    font-size: 10px !important;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#logout-button:hover {
+    background-color: #b71c1c; /* Color dorado más oscuro */
+    transform: scale(1.05);
+}
+
+#logout-button:active {
+    transform: scale(0.95);
+}

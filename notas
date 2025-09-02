@@ -1,0 +1,36 @@
+Tareas:
+
+Conexion a base de datos -x-
+Conexion en servidor -x-
+Estilos -x-
+Funcionalidad de botones -x-
+Barra Buscadora -x- 
+Filtros Para busqueda (Menor Precio - Marca - Categoria) -x-
+Filtro no habilitado -x-
+Crear nueva tabla en BD con solo un string para imagenes del banner -x-
+Agregar campo imagen en tabla productos y adaptar para la carga de la misma -x-
+Agregar Campo Descripcion -x-
+Filtro por precio -x-
+Acomodar filtro por precio -x-
+Agregar Logo -x-
+Cuadros informativos en index -x-
+Acomodar estilos Responsive -x- 
+Exportar a excel -x-
+Imagenes Productos (cloudify) -x-
+Validaciones de CRUD (marcas) -x- 
+Crear seccion de Banner -x-
+Arreglar Bug en filtro precio -x-
+Bug filtros -x-
+Nueva Seccion Pedidos -x-
+Funcionamiento total pedidos -x-
+Reever Bug tema precio -x-
+Reever tema estilos -x-
+
+
+Falta por hacer:
+Mejorar Pedidos
+
+
+CONSIDERACIONES:
+
+Cerrar el proceso en el puerto 3306 antes de inicar MySql en XAMPP
