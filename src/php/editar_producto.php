@@ -1,9 +1,9 @@
 <?php
-include 'db.php'; // Ajusta la ruta si es necesario
+include 'db.php'; // Asegúrate de que la ruta sea correcta
 
 header('Content-Type: application/json');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = isset($_POST['id']) ? intval($_POST['id']) : null;
 
     if (!$id) {
@@ -13,37 +13,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $habilitado = isset($_POST['habilitado']) ? intval($_POST['habilitado']) : null;
 
-    // Verificar si se envía una nueva imagen
+    // Procesar la imagen
     $imagenUrl = null;
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === 0) {
-        // Subir imagen al servidor
         $nombreArchivo = uniqid() . "_" . basename($_FILES["imagen"]["name"]);
         $directorioDestino = "../../uploads/" . $nombreArchivo;
 
         if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorioDestino)) {
-            $imagenUrl = "uploads/" . $nombreArchivo; // Ruta para guardar en la base de datos
+            $imagenUrl = "uploads/" . $nombreArchivo;
         } else {
             echo json_encode(["success" => false, "error" => "Error al subir la imagen."]);
             exit;
         }
     } else {
-        // Si no hay nueva imagen, mantener la URL anterior
         $imagenUrl = isset($_POST['imagenUrlActual']) ? $_POST['imagenUrlActual'] : null;
     }
 
-    // Preparar consulta de actualización
+    // Obtener nombre y descripción
     $nombre = isset($_POST['nombre']) ? $conn->real_escape_string($_POST['nombre']) : null;
     $descripcion = isset($_POST['descripcion']) ? $conn->real_escape_string($_POST['descripcion']) : null;
-    $categoria = isset($_POST['categoria']) ? $conn->real_escape_string($_POST['categoria']) : null;
-    $marca = isset($_POST['marca']) ? $conn->real_escape_string($_POST['marca']) : null;
-    $precio = isset($_POST['precio']) ? floatval($_POST['precio']) : null;
-    $preciomayorista = isset($_POST['preciomayorista']) ? floatval($_POST['preciomayorista']) : null;
 
+    // Preparar sentencia
     $stmt = $conn->prepare("UPDATE productos 
-        SET nombre = ?, descripcion = ?, categoria = ?, marca = ?, precio = ?, preciomayorista = ?, habilitado = ?, imagen = ?
+        SET nombre = ?, descripcion = ?, habilitado = ?, imagen = ?
         WHERE id = ?");
 
-    $stmt->bind_param("ssssddisi", $nombre, $descripcion, $categoria, $marca, $precio, $preciomayorista, $habilitado, $imagenUrl, $id);
+    $stmt->bind_param("ssisi", $nombre, $descripcion, $habilitado, $imagenUrl, $id);
 
     if ($stmt->execute()) {
         echo json_encode(["success" => true, "message" => "Producto actualizado correctamente."]);

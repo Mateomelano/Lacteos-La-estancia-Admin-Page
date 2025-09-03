@@ -1,52 +1,19 @@
 $(document).ready(function () {
   // BOTON MANTENIMIENTO
-  const toggleMantenimiento = document.getElementById("mantenimiento-toggle");
+  //const toggleMantenimiento = document.getElementById("mantenimiento-toggle");
 
   // 1. Obtener el estado actual del mantenimiento
-  fetch("src/php/obtener_estado_mantenimiento.php")
-    .then((res) => res.json())
-    .then((data) => {
-      if (data && toggleMantenimiento) {
-        toggleMantenimiento.checked = data.activado == 1;
-      }
-    })
-    .catch((err) => console.error("Error al obtener estado:", err));
+  //fetch("src/php/obtener_estado_mantenimiento.php")
+  //  .then((res) => res.json())
+  //  .then((data) => {
+      //if (data && toggleMantenimiento) {
+      //  toggleMantenimiento.checked = data.activado == 1;
+      //}
+  //  })
+  //  .catch((err) => console.error("Error al obtener estado:", err));
 
   // 2. Escuchar cambios y actualizar
-  toggleMantenimiento.addEventListener("change", () => {
-    fetch("src/php/actualizar_estado_mantenimiento.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ activado: toggleMantenimiento.checked ? 1 : 0 }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          Swal.fire({
-            icon: "success",
-            title: "Modo mantenimiento actualizado",
-            text: "El estado se cambió correctamente.",
-            timer: 2000,
-            showConfirmButton: false,
-          });
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: "No se pudo actualizar el estado.",
-          });
-        }
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "Hubo un problema al conectar con el servidor.",
-        });
-      });
-  });
+
 
   // Mostrar el modal al hacer clic en "Agregar Producto"
   $("#add-product-btn").click(function () {
@@ -73,46 +40,11 @@ $(document).ready(function () {
   });
 
   // Función para cargar marcas desde el servidor y llenar los selects
-  function cargarMarcas() {
-    $.ajax({
-      url: "src/php/get_marcas.php",
-      type: "GET",
-      dataType: "json",
-      success: function (data) {
-        let options = data
-          .map((marca) => `<option value="${marca}">${marca}</option>`)
-          .join("");
-        $("#marcaAgregar").append(options);
-        $("#marcaEditar").append(options);
-      },
-      error: function (xhr, status, error) {
-        console.error("Error al cargar marcas: ", error);
-      },
-    });
-  }
 
-  cargarMarcas();
+
 
   // Función para cargar categorias desde el servidor y llenar los selects
-  function cargarCategorias() {
-    $.ajax({
-      url: "src/php/get_categorias.php",
-      type: "GET",
-      dataType: "json",
-      success: function (data) {
-        let options = data
-          .map((cat) => `<option value="${cat}">${cat}</option>`)
-          .join("");
-        $("#categoriaAgregar").append(options);
-        $("#categoriaEditar").append(options); // sumamos edición
-      },
-      error: function (xhr, status, error) {
-        console.error("Error al cargar categorías: ", error);
-      },
-    });
-  }
 
-  cargarCategorias();
 
   // Agregar Producto
   const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dzfzqzdcu/upload";
@@ -123,42 +55,6 @@ $(document).ready(function () {
     let form = document.getElementById("formAgregar");
     let formData = new FormData(form);
 
-    let precioMayorista = $("#precioMayoristaAgregar").val();
-    formData.append("precioMayorista", precioMayorista);
-
-    // Marcas
-    let marcaSeleccionada = $("#marcaAgregar").val();
-    let nuevaMarca = $("#nuevaMarcaAgregar").val().trim();
-
-    if (nuevaMarca) {
-      formData.append("marca", nuevaMarca);
-    } else if (marcaSeleccionada) {
-      formData.append("marca", marcaSeleccionada);
-    } else {
-      Swal.fire({
-        icon: "warning",
-        title: "¡Atención!",
-        text: "Por favor, selecciona o ingresa una marca.",
-      });
-      return;
-    }
-
-    // Categorías
-    let categoriaSeleccionada = $("#categoriaAgregar").val();
-    let nuevaCategoria = $("#nuevaCategoriaAgregar").val().trim();
-
-    if (nuevaCategoria) {
-      formData.append("categoria", nuevaCategoria);
-    } else if (categoriaSeleccionada) {
-      formData.append("categoria", categoriaSeleccionada);
-    } else {
-      Swal.fire({
-        icon: "warning",
-        title: "¡Atención!",
-        text: "Por favor, selecciona o ingresa una categoria.",
-      });
-      return;
-    }
 
     //let imagen = document.getElementById("imagenAgregar").files[0];
     //if (imagen) {
@@ -224,19 +120,8 @@ $(document).ready(function () {
     let descripcion = row.find("td:eq(2)").text().trim();
     $("#descripcionEditar").val(descripcion);
 
-    let categoria = row.find("td:eq(3)").text().trim();
-    $("#categoriaEditar").val(categoria);
 
-    let marca = row.find("td:eq(4)").text().trim();
-    $("#marcaEditar").val(marca);
-
-    let precio = row.find("td:eq(5)").text().replace("$", "").trim();
-    $("#precioEditar").val(precio);
-
-    let preciomayorista = row.find("td:eq(6)").text().replace("$", "").trim();
-    $("#preciomayoristaEditar").val(preciomayorista);
-
-    let habilitado = row.find("td:eq(7) input[type='checkbox']").is(":checked")
+    let habilitado = row.find("td:eq(3) input[type='checkbox']").is(":checked")
       ? "1"
       : "0";
     $("#habilitadoEditar").val(habilitado);
@@ -257,7 +142,6 @@ $(document).ready(function () {
   });
 
   // Editar producto
-  // Editar producto
   $("#formEditar").submit(async function (e) {
     debugger;
     e.preventDefault();
@@ -266,45 +150,8 @@ $(document).ready(function () {
     formData.append("id", $("#idEditar").val());
     formData.append("nombre", $("#nombreEditar").val());
     formData.append("descripcion", $("#descripcionEditar").val());
-    formData.append("precio", $("#precioEditar").val());
-    formData.append("preciomayorista", $("#preciomayoristaEditar").val());
     formData.append("habilitado", $("#habilitadoEditar").val());
 
-    // --- Marca (nueva o seleccionada)
-    let marcaSeleccionada = $("#marcaEditar").val();
-    let nuevaMarca = $("#nuevaMarcaEditar").val().trim();
-
-    if (nuevaMarca) {
-      formData.set("marca", nuevaMarca);
-    } else if (marcaSeleccionada) {
-      formData.set("marca", marcaSeleccionada);
-    } else {
-      Swal.fire({
-        icon: "warning",
-        title: "¡Atención!",
-        text: "Por favor, selecciona o ingresa una marca.",
-      });
-      return;
-    }
-
-    // --- Categoría (nueva o seleccionada)
-    let categoriaSeleccionada = $("#categoriaEditar").val();
-    let nuevaCategoria = $("#nuevaCategoriaEditar").val().trim();
-
-    if (nuevaCategoria) {
-      formData.set("categoria", nuevaCategoria);
-    } else if (categoriaSeleccionada) {
-      formData.set("categoria", categoriaSeleccionada);
-    } else {
-      Swal.fire({
-        icon: "warning",
-        title: "¡Atención!",
-        text: "Por favor, selecciona o ingresa una categoria.",
-      });
-      return;
-    }
-
-    // --- Imagen
     // --- Imagen
     let imagenActual = $("#imagenUrlActual").val(); // La que ya tenía
     let imagen = document.getElementById("imagenEditar").files[0];
@@ -366,105 +213,60 @@ $(document).ready(function () {
     $(this).closest(".modal").css("display", "none");
   });
 
-  // filtro precio
 
-  $(".orden-icon").click(function () {
-    let columna =
-      $(this).attr("id") === "ordenar-precio" ? "precio" : "preciomayorista"; // Identifica qué columna ordenar
-    let ordenActual = $(this).data("order");
 
-    if (!ordenActual || ordenActual === "null") {
-      ordenActual = "asc"; // 🔼 Ascendente
-      $(this).data("order", "asc").text("🔽");
-    } else if (ordenActual === "asc") {
-      ordenActual = "desc"; // 🔽 Descendente
-      $(this).data("order", "desc").text("🔼");
-    } else {
-      ordenActual = null; // Sin orden
-      $(this).data("order", "null").text("🔼🔽");
-    }
+function cargarProductos(query = "", habilitadoFiltro = null) {
+  let data = { q: query };
 
-    let query = $("#search-input").val();
-    let habilitado = $("#filter-habilitado").data("state");
-
-    // ✅ Pasamos también la columna a ordenar
-    cargarProductos(query, habilitado, ordenActual, columna);
-  });
-
-  function cargarProductos(
-    query = "",
-    habilitadoFiltro = null,
-    orden = null,
-    columna = "precio"
-  ) {
-    let data = { q: query };
-    if (habilitadoFiltro !== null) {
-      data.habilitado = habilitadoFiltro;
-    }
-    if (orden) {
-      data.orden = orden;
-    }
-    if (columna) {
-      data.columna = columna;
-    }
-
-    $.ajax({
-      url: "src/php/get_productos.php",
-      type: "GET",
-      data: data,
-      dataType: "json",
-      success: function (data) {
-        let tableBody = $("#product-table-body");
-        tableBody.empty();
-
-        if (data.length > 0) {
-          data.forEach(function (producto) {
-            let checked = producto.habilitado == 1 ? "checked" : "";
-            let row = `<tr>
-    <td>${producto.id}</td>
-    <td>${producto.nombre}</td>
-    <td>${producto.descripcion}</td>
-    <td>${producto.categoria}</td>
-    <td>${producto.marca}</td>
-    <td>$${parseFloat(producto.precio).toFixed(2)}</td>
-    <td>$${parseFloat(producto.preciomayorista).toFixed(2)}</td>
-    <td>
-        <input type="checkbox" class="toggle-habilitado" data-id="${
-          producto.id
-        }" ${checked}>
-    </td>
-    <td>
-        <img src="${
-          producto.imagen
-        }" alt="Imagen del producto" width="50" height="50" onerror="this.onerror=null;this.src='default.jpg';">
-    </td>
-    <td>
-        <button class='edit-btn' data-id='${producto.id}'>✏️</button>
-        <button class='delete-btn' data-id='${producto.id}'>🗑️</button>
-    </td>
-    <td>
-        <input type="checkbox" class="checkProducto" value="${
-          producto.id
-        }" name="producto_${producto.id}">
-        <button class="edit-precio-btn" data-id="${producto.id}">✏️</button>
-    </td>
-</tr>`;
-
-            tableBody.append(row);
-          });
-        } else {
-          tableBody.append(
-            "<tr><td colspan='9'>No hay productos disponibles</td></tr>"
-          );
-        }
-      },
-      error: function () {
-        $("#product-table-body").append(
-          "<tr><td colspan='9'>Error al cargar los productos</td></tr>"
-        );
-      },
-    });
+  if (habilitadoFiltro !== null) {
+    data.habilitado = habilitadoFiltro;
   }
+
+  $.ajax({
+    url: "src/php/get_productos.php",
+    type: "GET",
+    data: data,
+    dataType: "json",
+    success: function (respuesta) {
+      console.log("✅ Productos recibidos:", respuesta); // <-- agregalo para depurar
+
+      let tableBody = $("#product-table-body");
+      tableBody.empty();
+
+      if (respuesta.length > 0) {
+        respuesta.forEach(function (producto) {
+          let checked = producto.habilitado == 1 ? "checked" : "";
+
+          let row = `<tr>
+            <td>${producto.id}</td>
+            <td>${producto.nombre}</td>
+            <td>${producto.descripcion}</td>
+            <td>
+              <input type="checkbox" class="toggle-habilitado" data-id="${producto.id}" ${checked}>
+            </td>
+            <td>
+              <img src="${producto.imagen}" alt="Imagen del producto" width="50" height="50"
+                   onerror="this.onerror=null;this.src='default.jpg';">
+            </td>
+            <td>
+              <button class='edit-btn' data-id='${producto.id}'>✏️</button>
+              <button class='delete-btn' data-id='${producto.id}'>🗑️</button>
+            </td>
+          </tr>`;
+
+          tableBody.append(row);
+        });
+      } else {
+        tableBody.append("<tr><td colspan='9'>No hay productos disponibles</td></tr>");
+      }
+    },
+    error: function (xhr, status, error) {
+      console.error("❌ Error al cargar productos:", error);
+      $("#product-table-body").append("<tr><td colspan='9'>Error al cargar los productos</td></tr>");
+    }
+  });
+}
+
 
   // 🟢 Estado inicial: intermedio (todos los productos)
   let filtroHabilitado = null;
@@ -550,10 +352,6 @@ $(document).ready(function () {
       "ID",
       "Nombre",
       "Descripción",
-      "Categoría",
-      "Marca",
-      "Precio",
-      "Precio Mayorista",
       "Habilitado",
     ];
     data.push(headers);
@@ -563,7 +361,7 @@ $(document).ready(function () {
       let cells = $(this).find("td");
       if (cells.length > 0) {
         let habilitadoIcon = cells
-          .eq(7)
+          .eq(3)
           .find("input[type='checkbox']")
           .is(":checked")
           ? "✅ Sí"
@@ -573,10 +371,6 @@ $(document).ready(function () {
           cells.eq(0).text().trim(), // ID
           cells.eq(1).text().trim(), // Nombre
           cells.eq(2).text().trim(), // Descripción
-          cells.eq(3).text().trim(), // Categoría
-          cells.eq(4).text().trim(), // Marca
-          cells.eq(5).text().trim(), // Precio
-          cells.eq(6).text().trim(), // Precio
           habilitadoIcon, // Habilitado con ícono de texto
         ];
         data.push(rowData);

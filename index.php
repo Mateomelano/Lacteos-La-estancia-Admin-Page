@@ -35,9 +35,6 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
         <ul>
           <li><a href="index.php">Información</a></li>
           <li><a href="productos.php">Productos</a></li>
-          <li><a href="banners.php">Banners</a></li>
-          <li><a href="pedidos.php">Pedidos</a></li>
-          <li><a href="ventas.php">Ventas</a></li>
           <li><a href="src/php/logout.php">
               <button id="logout-button">Cerrar Sesión</button>
             </a>
@@ -73,18 +70,6 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
               <div class="info-card">
                   <h3>Productos Deshabilitados</h3>
                   <p>${data.totalDeshabilitados}</p>
-              </div>
-              <div class="info-card">
-                  <h3>Producto Más Caro</h3>
-                  <p>${data.productoMasCaro.nombre} ($${parseFloat(data.productoMasCaro.precio).toFixed(2)})</p>
-              </div>
-              <div class="info-card">
-                  <h3>Producto Más Barato</h3>
-                  <p>${data.productoMasBarato.nombre} ($${parseFloat(data.productoMasBarato.precio).toFixed(2)})</p>
-              </div>
-              <div class="info-card">
-                  <h3>Marcas con las que trabajamos</h3>
-                  <p>${data.marcas.join(", ")}</p>
               </div>
             `;
         })
