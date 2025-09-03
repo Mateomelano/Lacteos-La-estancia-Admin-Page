@@ -11,10 +11,9 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>MC Aromas Admin Page</title>
+  <title>Lacteos La Estancia Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/jpeg"
-    href="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1743554383/ari6vwivcy0ndoeqpmmw.jpg">
+  <link rel="icon" href="../src/img/icono.png" type="image/x-icon">
   <!-- Estilos -->
   <link rel="stylesheet" href="build/css/app.css?v=<?php echo time(); ?>">
   <!-- JS -->
@@ -30,7 +29,7 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
   <div id="main-content">
     <aside class="sidebar">
       <nav>
-        <img src="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1743554383/ari6vwivcy0ndoeqpmmw.jpg" class="logo"
+        <img  class="logo"src="../src/img/logo2.jpg"
           alt="">
         <ul>
           <li><a href="index.php">Información</a></li>

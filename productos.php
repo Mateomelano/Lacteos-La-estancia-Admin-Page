@@ -11,12 +11,11 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>MC Aromas - Productos</title>
+    <title>Lacteos La Estancia Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <link rel="icon" type="image/jpeg"
-        href="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1743554383/ari6vwivcy0ndoeqpmmw.jpg">
+    <link rel="icon" href="../src/img/icono.png" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Importar jQuery -->
     <!-- Estilos -->
     <link rel="stylesheet" href="build/css/app.css?v=<?php echo time(); ?>">
@@ -34,7 +33,7 @@ if (!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn'] !== true) {
 
     <aside class="sidebar">
         <nav>
-            <img src="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1743554383/ari6vwivcy0ndoeqpmmw.jpg"
+            <img src="../src/img/logo2.jpg"
                 class="logo" alt="">
             <ul>
                 <li><a href="index.php">Información</a></li>

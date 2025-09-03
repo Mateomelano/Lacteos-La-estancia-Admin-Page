@@ -4,19 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - MC Aromas</title>
+    <title>Lacteos La Estancia Admin</title>
 
     <!-- Fuente Lexend -->
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/jpeg"
-        href="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1743554383/ari6vwivcy0ndoeqpmmw.jpg">
+    <link rel="icon" href="../src/img/icono.png" type="image/x-icon">
     <link rel="stylesheet" href="build/css/app.css?v=<?php echo time(); ?>">
 </head>
 
 <body class="login-body">
     <div class="login-container">
         <!-- Logo -->
-        <img src="https://res.cloudinary.com/dzfzqzdcu/image/upload/v1743554383/ari6vwivcy0ndoeqpmmw.jpg" class="logo"
+        <img src="../src/img/logo2.jpg" class="logo"
             alt="MC Aromas Logo">
 
         <h2>Iniciar Sesión</h2>
