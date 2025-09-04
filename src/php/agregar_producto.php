@@ -10,12 +10,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rutaImagen = null;
     if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === 0) {
         $nombreArchivo = uniqid() . "_" . basename($_FILES["imagen"]["name"]);
-        $directorioDestino = "../../uploads/" . $nombreArchivo;
+        $directorioDestino = __DIR__ . '/../../uploads/' . $nombreArchivo;
 
         if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorioDestino)) {
-            $rutaImagen = "https://purple-sheep-451734.hostingersite.com/uploads/" . $nombreArchivo;
+            $rutaImagen = "https://white-jay-917240.hostingersite.com/uploads/" . $nombreArchivo;
         } else {
-            echo json_encode(["status" => "error", "message" => "Error al subir la imagen"]);
+            if (!move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorioDestino)) {
+                error_log("❌ Error al mover archivo: " . $_FILES["imagen"]["error"]);
+                error_log("⛔ TMP: " . $_FILES["imagen"]["tmp_name"]);
+                error_log("⛳ DESTINO: " . $directorioDestino);
+                echo json_encode(["status" => "error", "message" => "Error al subir la imagen"]);
+                exit;
+            }
             exit;
         }
     }

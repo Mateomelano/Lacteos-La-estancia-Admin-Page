@@ -66,10 +66,9 @@ $(document).ready(function () {
   cargarCategorias();
 
   // Agregar Producto
-  const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dzfzqzdcu/upload";
-  const cloudinaryPreset = "McaromasPics"; // Reemplaza con tu preset de Cloudinary
-
+debugger
   $("#formAgregar").submit(async function (e) {
+    debugger
     e.preventDefault();
     let form = document.getElementById("formAgregar");
     let formData = new FormData(form);
