@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $directorioDestino = "../../uploads/" . $nombreArchivo;
 
         if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorioDestino)) {
-            $imagenUrl = "uploads/" . $nombreArchivo;
+            $imagenUrl = "https://white-jay-917240.hostingersite.com/uploads/" . $nombreArchivo;
         } else {
             echo json_encode(["success" => false, "error" => "Error al subir la imagen."]);
             exit;
